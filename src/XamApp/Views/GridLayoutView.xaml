@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamApp.Views.GridLayoutView"
+             Title = "DataGrid - XAML">
+    <ScrollView Orientation="Vertical">
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <BoxView Color="#E6287A" Grid.Row="0" Grid.Column="0"  />
+            <BoxView Color="#F87EB2" Grid.Row="1" Grid.Column="0"  />
+            <BoxView Color="Gray" Grid.Row="0" Grid.Column="1"
+                     Grid.RowSpan="2" />
+            <Button BackgroundColor="#CB3B78" Text="FlexLayoutDemoBtn" 
+                    Grid.Row="2" Grid.Column="0" TextColor="White" 
+                    FontSize="{OnPlatform Android= 10, UWP=18}"
+                    Command="{Binding OpenFlexLayoutPageCommand }"/>
+            <Button BackgroundColor="#DE7FA7" Text="StackLayoutDemoBtn" 
+                    Grid.Row="2" Grid.Column="1" TextColor="White"
+                    FontSize="{OnPlatform Android= 10, UWP=18}"
+                    Command="{Binding OpenStackLayoutPageCommand }"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

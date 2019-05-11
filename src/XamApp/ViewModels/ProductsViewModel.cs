@@ -4,37 +4,84 @@ using Prism.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamApp.Models;
+using Syncfusion.ListView.XForms;
+using Syncfusion.SfDataGrid.XForms.DataPager;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Reflection;
+using System.Linq;
+using Xamarin.Forms;
+using XamApp.Views;
 
 namespace XamApp.ViewModels
 {
     public class ProductsViewModel : BitViewModelBase
     {
+        private ProductRepository pagingProductRepository;
+        public ObservableCollection<Product> pagingProducts { get; set; }
+
         public ProductsViewModel()
         {
-            ShowProductDetailsCommand = new BitDelegateCommand<Product>(ShowProductDetails);
+           // ShowProductDetailsCommand = new BitDelegateCommand<Product>(ShowProductDetails);
+            pagingProductRepository = new ProductRepository();
+            pagingProducts = new ObservableCollection<Product>();
+            GenerateSource();
         }
+        /*SfDataPager sfPager = new SfDataPager();
+        SfListView listView = new SfListView();*/
 
-        public BitDelegateCommand<Product> ShowProductDetailsCommand { get; set; }
+       // public BitDelegateCommand<Product> ShowProductDetailsCommand { get; set; }
+
         public List<Product> Products { get; set; }
+       // public Product SelectedProduct { get; set; }
 
-        public IUserDialogs UserDialogs { get; set; }
-
-        public async override Task OnNavigatedToAsync(INavigationParameters parameters)
+       /* public async override Task OnNavigatedToAsync(INavigationParameters parameters)
         {
-            Products = new List<Product> // getting products from server or sqlite database
+            /*products = new list<product> // getting products from server or sqlite database
             {
-                new Product { Id = 1, IsActive = true, Name = "Product1" , Price = 12.2m /* m => decimal */ },
-                new Product { Id = 2, IsActive = false, Name = "Product2" , Price = 14 },
-                new Product { Id = 3, IsActive = true, Name = "Product3" , Price = 11 },
-            };
+                new product { id = 1, isactive = true, name = "product1" , price = 12.2m , note = "sample note for product1" },
+                new product { id = 2, isactive = false, name = "product2" , price = 14 , note = "sample note for product2"},
+                new product { id = 3, isactive = true, name = "product3" , price = 11 , note = "sample note for product3"},
+            };*/
+            
 
-            await base.OnNavigatedToAsync(parameters);
-        }
+        /*    await base.OnNavigatedToAsync(parameters);
+        }*/
 
-        async Task ShowProductDetails(Product product)
+      /*  async Task ShowProductDetails(Product product)
         {
-            string productDetail = $"Product: {product.Name}'s more info: ..."; // get more info from server.
-            await UserDialogs.AlertAsync(productDetail, "Product Detail");
+            await NavigationService.NavigateAsync("ProductDetail", new NavigationParameters
+            {
+                { "product", product }
+            });
+        }*/
+
+        private void GenerateSource()
+        {
+            var index = 0;
+            Assembly assembly = typeof(ProductsView).GetTypeInfo().Assembly;
+            for (int i = 0; i < pagingProductRepository.Names.Count(); i++)
+            {
+                if (index == 21)
+                    index = 0;
+
+                var name = pagingProductRepository.Names[index];
+                var p = new Product()
+                {
+                    Name = pagingProductRepository.Names[i],                    
+                    Image = ImageSource.FromResource("XamApp.Images." + name.Replace(" ", string.Empty) + ".jpg", assembly)
+                };
+
+                index++;
+                pagingProducts.Add(p);
+            }
         }
+
+        private void RaisePropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

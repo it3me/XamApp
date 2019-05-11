@@ -1,38 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="XamApp.Views.ProductsView"
+<ContentPage 
+    x:Class="XamApp.Views.ProductsView"   
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bit="clr-namespace:Bit.View;assembly=Bit.CSharpClient.Prism"
-    xmlns:bitControls="clr-namespace:Bit.CSharpClient.Controls;assembly=Bit.CSharpClient.Controls"
+    xmlns:bitControls="clr-namespace:Bit.CSharpClient.Controls;assembly=Bit.CSharpClient.Controls"    
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"       
+    xmlns:sfPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
+    xmlns:syncfusion1="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+    xmlns:local="clr-namespace:XamApp"
     xmlns:model="clr-namespace:XamApp.Models"
-    xmlns:sfListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:vm="clr-namespace:XamApp.ViewModels"
-    Title="Products"
-    x:DataType="vm:ProductsViewModel">
-    <sfListView:SfListView Padding="3" ItemsSource="{Binding Products}">
-        <sfListView:SfListView.ItemTemplate>
-            <DataTemplate>
-                <FlexLayout x:DataType="model:Product" Direction="Row">
-                    <Label
-                        FlexLayout.Basis="40%"
-                        Text="{Binding Name}"
-                        VerticalTextAlignment="Center" />
-                    <bitControls:BitCheckbox
-                        FlexLayout.Basis="20%"
-                        InputTransparent="True"
-                        IsChecked="{Binding IsActive}" />
-                    <Label
-                        FlexLayout.Basis="20%"
-                        Text="{Binding Price}"
-                        VerticalTextAlignment="Center" />
-                    <Button
-                        Command="{bit:ViewModelBinding ShowProductDetailsCommand}"
-                        CommandParameter="{Binding .}"
-                        FlexLayout.Basis="20%"
-                        Text="Detail..." />
-                </FlexLayout>
-            </DataTemplate>
-        </sfListView:SfListView.ItemTemplate>
-    </sfListView:SfListView>
+    Title="Products">
+
+    <ContentPage.Behaviors>
+        <local:SfListViewPagingBehavior/>
+    </ContentPage.Behaviors>
+
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <sfPager:SfDataPager x:Name="dataPager"
+                       HorizontalOptions="Center"
+                       Grid.Row="1"
+                       Padding="0,10,0,7"
+                       UseOnDemandPaging="True" NumericButtonCount="8" WidthRequest="630"
+                             PageSize="9" >
+            <syncfusion:SfListView x:Name="listView" SelectionMode="None" BackgroundColor="White"
+               Grid.Row="0" ItemSize="300">
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout SpanCount="3"/>
+                </syncfusion:SfListView.LayoutManager>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame OutlineColor="#b3b3b3" Margin="5" HasShadow="True" >
+                            <Grid Padding="0" ColumnSpacing="0" Margin="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image}" Aspect="AspectFit" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Name}" LineBreakMode="NoWrap" Grid.Row="0" HorizontalOptions="Start" FontFamily="Bold" FontSize="16"  TextColor="#333333"/>
+
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </sfPager:SfDataPager>
+
+    </Grid>
+
+
+
 </ContentPage>

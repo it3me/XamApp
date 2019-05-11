@@ -17,12 +17,13 @@ namespace XamApp.UWP
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(SyncfusionLicense.Product_Key);
 
-            BitExceptionHandler.Current = new XamAppExceptionHandler();
+            BitExceptionHandler.Current = new XamAppExceptionHandler();            
         }
 
         public App()
         {
             InitializeComponent();
+                
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamApp.Views.StackLayoutView"
+             Title="StackLayout--Demo">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="box-view" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=50,UWP=100}"/>
+                <Setter Property="WidthRequest" Value="{OnPlatform Android=50, UWP=100}"/>
+            </Style>
+            
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <ScrollView Orientation="Vertical">
+        <StackLayout Orientation="Vertical" Spacing="20"  HeightRequest="500" WidthRequest="100">
+            <StackLayout Orientation="Horizontal" >
+                <BoxView x:Name="Box1" Color="#E6287A" Style="{StaticResource box-view}" />
+                <BoxView x:Name="Box2" Color="#F87EB2" Style="{StaticResource box-view}" />
+                <BoxView x:Name="Box3" Color="#CB3B78" Style="{StaticResource box-view}" />
+                <BoxView x:Name="Box4" Color="#DE7FA7" Style="{StaticResource box-view}" />
+                <BoxView x:Name="Box5" Color="#ebc6d9" Style="{StaticResource box-view}" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Spacing="10" >
+                <BoxView Color="#FF80FF" HeightRequest="{OnPlatform Android=20,UWP=50}" WidthRequest="{OnPlatform Android=100, UWP=300}" />
+                <BoxView Color="#FF80FF"  HeightRequest="{OnPlatform Android=20,UWP=50}"  />
+                <BoxView Color="#FF80FF"  HeightRequest="{OnPlatform Android=20,UWP=50}"  />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="2" >
+                <BoxView Color="#ff6666" Style="{StaticResource box-view}" />
+                <BoxView Color="#ff1a1a" Style="{StaticResource box-view}"/>
+                <BoxView Color="#ffe6e6" Style="{StaticResource box-view}"/>
+                <BoxView Color="#ebc6d9" Style="{StaticResource box-view}"/>
+                <BoxView Color="#DE7FA1" Style="{StaticResource box-view}"/>
+                <BoxView Color="#ebc6d1" Style="{StaticResource box-view}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Spacing="20" >
+                    <BoxView Color="#c299ff" Style="{StaticResource box-view}"/>
+                    <StackLayout Orientation="Vertical" Spacing="3" >
+                        <BoxView Color="#FF80FF" HeightRequest="15" WidthRequest="100" />
+                        <BoxView Color="#FF80FF" HeightRequest="15"  />
+                        <BoxView Color="#FF80FF" HeightRequest="15"  />
+                        <BoxView Color="#FF80FF" HeightRequest="15"  />
+                        <BoxView Color="#FF80FF" HeightRequest="15"  />
+                    </StackLayout>
+                <BoxView Color="#80aaff" Style="{StaticResource box-view}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

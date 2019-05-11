@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamApp.Views.DataPagerView"
+             xmlns:local="clr-namespace:XamApp;assembly=XamApp"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"             
+             xmlns:sfgrid="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:sfPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms">
+    <ContentPage.Behaviors>
+        <local:SfListViewPagingBehavior/>
+    </ContentPage.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+            
+            
+        <sfPager:SfDataPager x:Name ="dataPager"
+                           Grid.Row="0"           
+                           PageSize="15" 
+                           HeightRequest ="50"
+                           NumericButtonCount="20"
+                           Source="{Binding ProductCollection}">
+            </sfPager:SfDataPager>
+            <sfgrid:SfDataGrid x:Name="dataGrid"
+                         Grid.Row="1"
+                         AutoGenerateColumns="true"
+                         ColumnSizer="Star"
+                         SelectionMode="Single"
+                         ItemsSource="{Binding PagedSource, Source={x:Reference dataPager}}"  
+                         >
+            </sfgrid:SfDataGrid>
+    </Grid>
+
+</ContentPage>  

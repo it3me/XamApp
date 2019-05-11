@@ -13,6 +13,7 @@ namespace XamApp.UWP
             InitializeComponent();
 
             SfListViewRenderer.Init();
+            Syncfusion.SfDataGrid.XForms.UWP.SfDataGridRenderer.Init();
 
             LoadApplication(new XamApp.App(new XamAppPlatformInitializer()));
         }

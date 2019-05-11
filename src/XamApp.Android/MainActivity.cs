@@ -36,7 +36,7 @@ namespace XamApp.Droid
             Forms.Init(this, savedInstanceState);
 
             BitCSharpClientControls.Init();
-
+            
             LoadApplication(new App(new XamAppPlatformInitializer(this)));
         }
     }
@@ -51,7 +51,7 @@ namespace XamApp.Droid
         public override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             ContainerBuilder containerBuilder = containerRegistry.GetBuilder();
-
+            
             base.RegisterTypes(containerRegistry);
         }
     }

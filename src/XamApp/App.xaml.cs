@@ -6,7 +6,6 @@ using Bit.ViewModel.Implementations;
 using Prism;
 using Prism.Autofac;
 using Prism.Ioc;
-using Prism.Navigation;
 using System.Globalization;
 using System.Threading.Tasks;
 using XamApp.Resources;
@@ -37,16 +36,23 @@ namespace XamApp
 #if DEBUG
             LiveReload.Init();
 #endif
+
+
         }
 
         protected async override Task OnInitializedAsync()
         {
+           
             InitializeComponent();
 
             Strings.Culture = CultureInfo.CurrentUICulture = new CultureInfo("en");
 
-            // await NavigationService.NavigateAsync("/Login", animated: false);
-            await NavigationService.NavigateAsync("/Nav/HelloWorld", animated: false);
+            await NavigationService.NavigateAsync("/Nav/ActivationPage");
+            //await NavigationService.NavigateAsync("/Nav/GridLayout");
+
+
+            //await NavigationService.NavigateAsync("/Nav/Products");
+            //await NavigationService.NavigateAsync("/DataPager");
 
             await base.OnInitializedAsync();
         }
@@ -62,6 +68,19 @@ namespace XamApp
             containerRegistry.RegisterForNav<LoginView, LoginViewModel>("Login");
             containerRegistry.RegisterForNav<IntroView, IntroViewModel>("Intro");
             containerRegistry.RegisterForNav<ProductsView, ProductsViewModel>("Products");
+            containerRegistry.RegisterForNav<ProductDetailView, ProductDetailViewModel>("ProductDetail");
+            
+            containerRegistry.RegisterForNav<MelkradarView, MelkradarViewMode>("ActivationPage");
+            containerRegistry.RegisterForNav<ServiceItemsView, ServiceItemsViewModel>("ServiceItems");
+
+            containerRegistry.RegisterForNav<DataPagerView, DataPagerViewModel>("DataPager");
+
+            containerRegistry.RegisterForNav<GridLayoutView, GridLayoutViewModel>("GridLayout");
+            containerRegistry.RegisterForNav<FlexLayoutView, FlexLayoutViewModel>("FlexLayout");
+            containerRegistry.RegisterForNav<StackLayoutView, StackLayoutViewModel>("StackLayout");
+
+
+
 
             containerBuilder.Register<IClientAppProfile>(c => new DefaultClientAppProfile
             {

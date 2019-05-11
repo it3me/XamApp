@@ -1,15 +1,26 @@
 ﻿using Bit.Model;
+using System.ComponentModel;
+using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace XamApp.Models
 {
-    public class Product : Bindable
+    public class Product : Bindable ,  INotifyPropertyChanged
     {
-        public int Id { get; set; }
+       // public int Id { get; set; }
+       // public bool IsActive { get; set; }
 
         public string Name { get; set; }
+       
+        public ImageSource Image { get; set; }        
 
-        public bool IsActive { get; set; }
+        public string Price { get; set; }       
+                
+        private void RaisePropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
-        public decimal Price { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

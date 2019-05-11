@@ -1,10 +1,12 @@
-﻿namespace XamApp.Views
+﻿using System;
+
+namespace XamApp.Views
 {
     public partial class ProductsView 
     {
         public ProductsView()
         {
             InitializeComponent();
-        }
+        }        
     }
 }

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamApp.Views.FlexLayoutView"
+             Title="FlexLayout--Demo">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="box-view" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="{OnPlatform Android=50,UWP=100}"/>
+                <Setter Property="WidthRequest" Value="{OnPlatform Android=50, UWP=100}"/>
+            </Style>
+            <Style x:Key="flex-layout" TargetType="FlexLayout">
+                <Setter Property="HorizontalOptions" Value="{OnPlatform Android=Center,UWP=FillAndExpand}"/>
+                <Setter Property="VerticalOptions" Value="{OnPlatform Android=Center,UWP=FillAndExpand}"/>
+            </Style>
+        </ResourceDictionary>
+    
+    </ContentPage.Resources>
+   
+    <ScrollView Orientation="Both" >
+        <FlexLayout Direction="Column" HeightRequest="500" WidthRequest="100">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <FlexLayout Style="{StaticResource flex-layout}" JustifyContent="SpaceEvenly">
+
+                    <BoxView Color="#E6287A" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#DE7FA7" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#CB3B78" Style="{StaticResource box-view}"/>
+                </FlexLayout>
+            </ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <FlexLayout Wrap="Wrap" HorizontalOptions="{OnPlatform Android=Center,UWP=FillAndExpand}"
+                            Direction="RowReverse" JustifyContent="SpaceEvenly" AlignItems="Center" >
+
+                    <BoxView Color="#F87EB2" FlexLayout.Grow="1" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#E6287A" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#CB3B78" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#DE7FA7" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#F87EB2" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#E6287A" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#CB3B78" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#DE7FA7" FlexLayout.Grow="1" Style="{StaticResource box-view}"/>
+
+                </FlexLayout>
+            </ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <FlexLayout Wrap="NoWrap" HorizontalOptions="{OnPlatform Android=Center,UWP=FillAndExpand}"
+                            Direction="Row" AlignContent="Start" JustifyContent="SpaceAround" >
+
+                    <BoxView Color="#ff1a1a" FlexLayout.Basis="50%" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#ff8080" Style="{StaticResource box-view}"/>
+                        <BoxView Color="#ff9980" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#e60000" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#ff3333" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#ff99cc" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#ffa64d" FlexLayout.Basis="50%" Style="{StaticResource box-view}"/>
+
+                </FlexLayout>
+            </ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <FlexLayout Wrap="NoWrap" HorizontalOptions="{OnPlatform Android=Center,UWP=FillAndExpand}"
+                            Direction="Row"  AlignContent="Start" JustifyContent="SpaceBetween" >
+
+                    <BoxView Color="#9494b8" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#99bbff" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#d98cd9" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#9494b8" Style="{StaticResource box-view}"/>
+
+                </FlexLayout>
+            </ScrollView>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <FlexLayout HorizontalOptions="{OnPlatform Android=Center,UWP=FillAndExpand}"
+                            Direction="Row" JustifyContent="SpaceEvenly"  >
+
+                    <BoxView Color="#ffbb33" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#cc8800" Style="{StaticResource box-view}"/>
+                    <BoxView Color="#805500" Style="{StaticResource box-view}"/>
+
+                </FlexLayout>
+            </ScrollView>
+
+        </FlexLayout>         
+    </ScrollView>
+</ContentPage>
+
+
+

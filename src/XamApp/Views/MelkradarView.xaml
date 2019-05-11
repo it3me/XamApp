@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamApp;assembly=XamApp"             
+             x:Class="XamApp.Views.MelkradarView"
+             xmlns:vm="clr-namespace:XamApp.ViewModels"             
+             x:DataType="vm:MelkradarViewMode"
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SelectedEntry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#e0e0d1"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>               
+            </Style>                       
+            <Style x:Key="plainButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="FontSize" Value="30" />                
+            </Style>                     
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+
+        <ScrollView Orientation="Vertical">
+            <StackLayout Orientation="Vertical" Spacing="10" Padding="10,0,10,0"                          
+                     HorizontalOptions="End" VerticalOptions="Start" >
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="2">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnPlatform UWP=20, Android=18}"/>
+                                <RowDefinition Height="{OnPlatform UWP=20, Android=18}"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="1" XAlign="{OnPlatform Android=Center, UWP=End}" 
+                                   Text="ملک رادار" FontSize="{OnPlatform UWP=14, Android=10}" TextColor="Black" />
+                            <Label Grid.Row="1" Grid.Column="1" XAlign="End" Text="MELKRADAR" 
+                                   FontSize="{OnPlatform UWP=12, Android=9}" />
+                            <Image Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" Grid.ColumnSpan="2"
+                                   Grid.RowSpan="2" 
+                                   Source="{local:ImageResource XamApp.Images.realstate1.png}" />
+                    </Grid>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" Spacing="5" Margin="20" 
+                            HeightRequest="{OnPlatform Android=120, UWP=200}"  >
+                    <Image  Source="{local:ImageResource XamApp.Images.mobile.jpg}"
+                            WidthRequest="{OnPlatform Android=55,UWP=70}"
+                            HeightRequest="{OnPlatform Android=65, UWP=80}"/>
+                    <Label  Text="کد ارسال شده را اینجا وارد کنید" FontSize="Small" 
+                            HorizontalOptions="CenterAndExpand" />  
+                </StackLayout>               
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center"
+                            HeightRequest="50" Margin="0" >
+                    <Frame BorderColor="#000c1a" CornerRadius="10" HasShadow="True">
+                        <Entry x:Name="FirstDigit" Keyboard="Numeric"
+                               WidthRequest="{OnPlatform UWP=100, Android= 40}" 
+                               HeightRequest="{OnPlatform UWP=70, Android=10}"
+                               MaxLength="1"                            
+                               Style="{StaticResource SelectedEntry}" 
+                               TextChanged="FirstDigit_TextChanged">
+                           
+                        </Entry>
+                    </Frame>
+                    <Frame BorderColor="#e6f2ff" CornerRadius="10">
+                        <Entry x:Name="SecondDigit" MaxLength="1" 
+                                Keyboard="Numeric"
+                               WidthRequest="{Binding Path=Width, Source={x:Reference FirstDigit}}" 
+                               HeightRequest="{Binding Path=Height, Source={x:Reference FirstDigit}}"
+                               Style="{StaticResource SelectedEntry}"
+                               TextChanged="SecondDigit_TextChanged"/>
+                    </Frame>
+                    <Frame BorderColor="#e6f2ff" CornerRadius="10" >
+                        <Entry x:Name="ThirdDigit" MaxLength="1" CursorPosition="50" 
+                               WidthRequest="{Binding Path=Width, Source={x:Reference FirstDigit}}"
+                               HeightRequest="{Binding Path=Height, Source={x:Reference FirstDigit}}"
+                               Style="{StaticResource SelectedEntry}" Keyboard="Numeric"
+                               TextChanged="ThirdDigit_TextChanged"/>
+                    </Frame>
+                    <Frame BorderColor="#e6f2ff" CornerRadius="10">
+                        <Entry x:Name="FourthDigit" MaxLength="1" CursorPosition="50" 
+                               WidthRequest="{Binding Path=Width, Source={x:Reference FirstDigit}}"
+                               HeightRequest="{Binding Path=Height, Source={x:Reference FirstDigit}}"
+                               Style="{StaticResource SelectedEntry}" Keyboard="Numeric"
+                               TextChanged="FourthDigit_TextChanged"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Padding="10" Spacing="5">                
+                    <Button Text="تایید" HorizontalOptions="FillAndExpand" BorderRadius="10" 
+                            BackgroundColor="#85adad" 
+                            WidthRequest="40" 
+                            HeightRequest="{OnPlatform Android=30, UWP=50}"                         
+                            FontAttributes="Bold" FontSize="Small" Margin="0"
+                            Command="{Binding ConfirmCommand}" />             
+                </StackLayout>
+
+                <StackLayout Padding="0" IsVisible="{OnPlatform Android=False, UWP=True}">                                  
+
+                    <Grid x:Name="Keyboard" RowSpacing="1" ColumnSpacing="1" BackgroundColor="#e0e0d2"
+                                Padding="5,0,5,0"  >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33.33*" /> 
+                            <ColumnDefinition Width="33.33*" />
+                            <ColumnDefinition Width="33.33*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text = "1" Grid.Row="0" Grid.Column="0"
+                                Style="{StaticResource plainButton}" 
+                                Clicked="Button_Clicked"/>
+                           
+                            
+                        <Button Text = "2" Grid.Row="0" Grid.Column="1"
+                                Style="{StaticResource plainButton}"                           
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "3" Grid.Row="0" Grid.Column="2"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "4" Grid.Row="1" Grid.Column="0"
+                                Style="{StaticResource plainButton}" 
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "5" Grid.Row="1" Grid.Column="1"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "6" Grid.Row="1" Grid.Column="2"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "7" Grid.Row="2" Grid.Column="0"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "8" Grid.Row="2" Grid.Column="1"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "9" Grid.Row="2" Grid.Column="2"
+                                Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <Button Text = "0" Grid.Row="3" Grid.Column="1"
+                            Style="{StaticResource plainButton}"
+                                Clicked="Button_Clicked"/>
+                        <!-- <ImageButton Source="{local:ImageResource XamApp.Images.back5.jpg}"  Grid.Row="3" Grid.Column="2"
+                                HorizontalOptions="Center" HeightRequest="25"
+                                VerticalOptions="CenterAndExpand"/>-->
+                    </Grid>
+                
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>   
+</ContentPage>

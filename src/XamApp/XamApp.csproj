@@ -11,6 +11,53 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="3d_1.jpg" />
+    <None Remove="3d_3.jpg" />
+    <None Remove="3d_4.jpg" />
+    <None Remove="3d_7.jpg" />
+    <None Remove="circle.jpg" />
+    <None Remove="Images\account1.jpg" />
+    <None Remove="Images\back5.jpg" />
+    <None Remove="Images\flower1.jpg" />
+    <None Remove="Images\flower2.jpg" />
+    <None Remove="Images\flower3.jpg" />
+    <None Remove="Images\flower4.jpg" />
+    <None Remove="Images\green.jpg" />
+    <None Remove="Images\iceBlue.jpg" />
+    <None Remove="Images\info.jpg" />
+    <None Remove="Images\logout.jpg" />
+    <None Remove="Images\melkradar.png" />
+    <None Remove="Images\mobile.jpg" />
+    <None Remove="Images\notif2.jpg" />
+    <None Remove="Images\realstate1.png" />
+    <None Remove="melkradar.jpg" />
+    <None Remove="notif2.jpg" />
+    <None Remove="text1.jpg" />
+    <None Remove="th8GLM62JR.jpg" />
+    <None Remove="thBRV4QPWP.jpg" />
+    <None Remove="thC39TEVZ4.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\account1.jpg" />
+    <EmbeddedResource Include="Images\back5.jpg" />
+    <EmbeddedResource Include="Images\blue.jpg" />
+    <EmbeddedResource Include="Images\flower1.jpg" />
+    <EmbeddedResource Include="Images\flower2.jpg" />
+    <EmbeddedResource Include="Images\flower3.jpg" />
+    <EmbeddedResource Include="Images\flower4.jpg" />
+    <EmbeddedResource Include="Images\green.jpg" />
+    <EmbeddedResource Include="Images\iceBlue.jpg" />
+    <EmbeddedResource Include="Images\info.jpg" />
+    <EmbeddedResource Include="Images\logout.jpg" />
+    <EmbeddedResource Include="Images\melkradar.png" />
+    <EmbeddedResource Include="Images\notif2.jpg" />
+    <EmbeddedResource Include="Images\mobile.jpg" />
+    <EmbeddedResource Include="Images\realstate1.png" />
+    <EmbeddedResource Include="text1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Bit.CSharpClient.Prism" Version="1.4.0" />
     <PackageReference Include="BitCodeAnalyzer" Version="1.4.0" />
@@ -18,11 +65,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="LiveXAML" Version="2.1.72" />
     <PackageReference Include="PropertyChanged.Fody" Version="2.6.0" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.3.0.36" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.4.0.52" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.4.0.54" />
+    <PackageReference Include="Xamarin.Forms" Version="3.5.0.274416" />
     <PackageReference Condition=" '$(Configuration)' == 'Debug' " Include="Xamarin.LiveReload" Version="0.3.27" />
-    <PackageReference Condition=" '$(Configuration)' == 'Debug' " Include="LiveXAML" Version="2.1.57" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +85,27 @@
     <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DataPagerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\FlexLayoutView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GridLayoutView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GridView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MelkradarView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ServiceItemsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\StackLayoutView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
